@@ -18,7 +18,10 @@ const SignUpSchema = z
     email: z.string(),
     password: z.string(),
     confirmPassword: z.string(),
-    terms: z.boolean(),
+    terms: z.object({
+      array: z.array(z.string()),
+      boolean: z.boolean(),
+    }),
   })
   .refine((field) => field.password === field.confirmPassword, {
     message: "Passwords do not match",
@@ -31,7 +34,10 @@ export const useFormLoader = routeLoader$<InitialValues<SignUpForm>>(() => ({
   email: "",
   password: "",
   confirmPassword: "",
-  terms: false,
+  terms: {
+    array: [],
+    boolean: false,
+  },
 }));
 
 export const useFormAction = formAction$<SignUpForm>((values) => {
@@ -150,13 +156,14 @@ export default component$(() => {
           </Field>
         </div>
         <div class="flex items-center">
-          <Field name="terms" type="boolean">
+          <Field name="terms.boolean" type="boolean">
             {(field, props) => (
               <div>
                 <input
                   type="checkbox"
                   {...props}
                   required
+                  checked={field.value}
                   class="cursor-pointer rounded border-slate-300 text-sky-600 focus:ring-sky-500 focus:ring-offset-1 dark:border-slate-700 dark:bg-slate-800"
                   aria-describedby="terms-description"
                 />
