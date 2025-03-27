@@ -37,11 +37,11 @@ export const Sidebar = component$(() => {
 
   return (
     <section class="flex md:hidden">
-      {/* Menu Button */}
+      {/* Menu Button - Increased touch target size */}
       <button
         onClick$={toggleOpen}
         aria-label="Open Sidebar"
-        class="cursor-pointer"
+        class="cursor-pointer p-3"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -76,11 +76,11 @@ export const Sidebar = component$(() => {
           "translate-x-full": !isOpen.value,
         }}
       >
-        {/* Close Button */}
+        {/* Close Button - Increased touch target size and padding */}
         <button
           onClick$={toggleOpen}
           aria-label="Close Sidebar"
-          class="flex w-full cursor-pointer items-center justify-end"
+          class="-mr-3 flex w-full cursor-pointer items-center justify-end p-3"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -97,13 +97,13 @@ export const Sidebar = component$(() => {
         </button>
 
         {/* Navigation Links */}
-        <nav class="flex flex-col gap-6">
-          <ul class="flex flex-col gap-4 text-sm font-medium">
+        <nav class="mt-4 flex flex-col gap-6">
+          <ul class="flex flex-col gap-2">
             <li>
               <NavLink
                 href="/about-us"
                 activeClass="text-sky-500"
-                class="block transition-colors hover:text-sky-700 dark:hover:text-sky-300"
+                class="-mx-3 block rounded-lg p-3 text-sm font-medium transition-colors hover:bg-slate-100 hover:text-sky-700 dark:hover:bg-slate-800 dark:hover:text-sky-300"
               >
                 About
               </NavLink>
@@ -112,24 +112,26 @@ export const Sidebar = component$(() => {
               <NavLink
                 activeClass="text-sky-500"
                 href="/contact-us"
-                class="block transition-colors hover:text-sky-700 dark:hover:text-sky-300"
+                class="-mx-3 block rounded-lg p-3 text-sm font-medium transition-colors hover:bg-slate-100 hover:text-sky-700 dark:hover:bg-slate-800 dark:hover:text-sky-300"
               >
                 Contact
               </NavLink>
             </li>
           </ul>
           <section class="space-y-4">
-            <ToggleTheme />
+            <div class="-mx-3 inline-block rounded-lg p-3 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <ToggleTheme />
+            </div>
             <Link
               href="/sign-in"
-              class="block w-full cursor-pointer rounded-lg bg-sky-800 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-300"
+              class="block w-full cursor-pointer rounded-lg bg-sky-800 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-300"
               aria-label="Sign In"
             >
               Sign In
             </Link>
             <Link
               href="/sign-up"
-              class="block w-full cursor-pointer rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-200 focus:ring-2 focus:ring-slate-500 focus:outline-none dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 dark:focus:ring-slate-400"
+              class="block w-full cursor-pointer rounded-lg bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-200 focus:ring-2 focus:ring-slate-500 focus:outline-none dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 dark:focus:ring-slate-400"
               aria-label="Sign Up"
             >
               Sign Up
