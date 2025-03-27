@@ -77,24 +77,26 @@ export const Sidebar = component$(() => {
         }}
       >
         {/* Close Button - Increased touch target size and padding */}
-        <button
-          onClick$={toggleOpen}
-          aria-label="Close Sidebar"
-          class="-mr-3 flex w-full cursor-pointer items-center justify-end p-3"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-6"
+        <section class="flex items-center justify-between">
+          <button
+            onClick$={toggleOpen}
+            aria-label="Close Sidebar"
+            class="cursor-pointer p-3"
           >
-            <path
-              fill-rule="evenodd"
-              d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </section>
 
         {/* Navigation Links */}
         <nav class="mt-4 flex flex-col gap-6">
@@ -103,7 +105,7 @@ export const Sidebar = component$(() => {
               <NavLink
                 href="/about-us"
                 activeClass="text-sky-500"
-                class="-mx-3 block rounded-lg p-3 text-sm font-medium transition-colors hover:bg-slate-100 hover:text-sky-700 dark:hover:bg-slate-800 dark:hover:text-sky-300"
+                class="block rounded-lg p-3 text-sm font-medium transition-colors hover:bg-slate-100 hover:text-sky-700 dark:hover:bg-slate-800 dark:hover:text-sky-300"
               >
                 About
               </NavLink>
@@ -112,19 +114,19 @@ export const Sidebar = component$(() => {
               <NavLink
                 activeClass="text-sky-500"
                 href="/contact-us"
-                class="-mx-3 block rounded-lg p-3 text-sm font-medium transition-colors hover:bg-slate-100 hover:text-sky-700 dark:hover:bg-slate-800 dark:hover:text-sky-300"
+                class="block rounded-lg p-3 text-sm font-medium transition-colors hover:bg-slate-100 hover:text-sky-700 dark:hover:bg-slate-800 dark:hover:text-sky-300"
               >
                 Contact
               </NavLink>
             </li>
           </ul>
           <section class="space-y-4">
-            <div class="-mx-3 inline-block rounded-lg p-3 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <div class="">
               <ToggleTheme />
             </div>
             <Link
               href="/sign-in"
-              class="block w-full cursor-pointer rounded-lg bg-sky-700 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-sky-800 focus:ring-2 focus:ring-sky-400 focus:outline-none dark:bg-sky-500 dark:text-white dark:hover:bg-sky-600 dark:focus:ring-sky-300"
+              class="block w-full cursor-pointer rounded-lg bg-sky-700 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-sky-800 focus:ring-2 focus:ring-sky-400 focus:outline-none dark:bg-sky-500 dark:text-white dark:hover:bg-sky-600 dark:focus:ring-sky-300"
               aria-label="Sign In"
             >
               Sign In
