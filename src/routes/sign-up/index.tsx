@@ -164,7 +164,6 @@ export default component$(() => {
                   type="checkbox"
                   {...props}
                   required
-                  checked={field.value}
                   class="cursor-pointer rounded border-slate-300 text-sky-600 focus:ring-sky-500 focus:ring-offset-1 dark:border-slate-700 dark:bg-slate-800"
                   aria-describedby="terms-description"
                 />
