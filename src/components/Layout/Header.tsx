@@ -7,7 +7,7 @@ import { NavLink } from "./NavLink";
 export const Header = component$(() => {
   return (
     <header
-      class="bg-white px-4 py-3 shadow-md dark:bg-slate-900"
+      class="bg-slate-50 px-4 py-3 text-slate-950 shadow-md dark:bg-slate-950 dark:text-slate-50"
       role="banner"
     >
       <div class="mx-auto flex max-w-7xl items-center justify-between gap-4">

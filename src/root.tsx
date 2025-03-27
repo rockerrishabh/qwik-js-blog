@@ -55,7 +55,7 @@ export default component$(() => {
       </head>
       <body
         lang="en"
-        class="bg-slate-50 font-sans text-slate-950 antialiased dark:bg-slate-950 dark:text-slate-50"
+        class="bg-slate-100 font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100"
       >
         <RouterOutlet />
         {!isDev && <ServiceWorkerRegister />}
