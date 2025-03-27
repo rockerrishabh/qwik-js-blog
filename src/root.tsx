@@ -30,34 +30,34 @@ export default component$(() => {
         <RouterHead />
         <script
           dangerouslySetInnerHTML={`
-       (function() {
+       (function () {
     function setTheme(theme) {
       document.documentElement.classList.remove("light", "dark");
       document.documentElement.classList.add(theme);
       localStorage.setItem("theme", theme);
     }
 
-    // Check stored theme or system preference
+    // Load theme from localStorage or system preference
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const theme = savedTheme || (prefersDark ? "dark" : "light");
-
     setTheme(theme);
 
     // Ensure toggle button reflects the current theme
-    window.addEventListener("load", function() {
+    window.addEventListener("DOMContentLoaded", function () {
       const themeSwitch = document.getElementById("hide-checkbox");
       if (themeSwitch) {
         themeSwitch.checked = theme === "light";
       }
-    });
 
-    // Listen for theme changes from the toggle button
-    window.addEventListener("click", function(event) {
-      const toggleButton = event.target.closest("button");
-      if (toggleButton && toggleButton.getAttribute("id") === "theme-toggle") {
-        const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
-        setTheme(currentTheme === "light" ? "dark" : "light");
+      // Attach event listener to the toggle button
+      const toggleButton = document.getElementById("theme-toggle");
+      if (toggleButton) {
+        toggleButton.addEventListener("click", function () {
+          const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+          const newTheme = currentTheme === "light" ? "dark" : "light";
+          setTheme(newTheme);
+        });
       }
     });
   })();
