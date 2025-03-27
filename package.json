@@ -1,5 +1,5 @@
 {
-  "name": "my-qwik-empty-starter",
+  "name": "qwik-js-blog",
   "devDependencies": {
     "@builder.io/qwik": "^1.12.1",
     "@builder.io/qwik-city": "^1.12.1",
