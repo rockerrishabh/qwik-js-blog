@@ -40,14 +40,14 @@ export const Sidebar = component$(() => {
       {/* Menu Button */}
       <button
         onClick$={toggleOpen}
-        aria-label="Open the sidebar menu"
+        aria-label="Open Sidebar"
         class="cursor-pointer"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          class="size-6 p-2"
+          class="size-6"
         >
           <path
             fill-rule="evenodd"
@@ -79,8 +79,8 @@ export const Sidebar = component$(() => {
         {/* Close Button */}
         <button
           onClick$={toggleOpen}
-          aria-label="Close the sidebar menu"
-          class="flex w-full cursor-pointer items-center justify-end p-4"
+          aria-label="Close Sidebar"
+          class="flex w-full cursor-pointer items-center justify-end"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +103,7 @@ export const Sidebar = component$(() => {
               <NavLink
                 href="/about-us"
                 activeClass="text-sky-500"
-                class="block p-3 transition-colors hover:text-sky-700 dark:hover:text-sky-300"
+                class="block transition-colors hover:text-sky-700 dark:hover:text-sky-300"
               >
                 About
               </NavLink>
