@@ -46,7 +46,7 @@ export const Header = component$(() => {
             <ToggleTheme />
             <Link
               href="/sign-in"
-              class="cursor-pointer rounded-lg bg-sky-700 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-sky-800 focus:ring-2 focus:ring-sky-400 focus:outline-none dark:bg-sky-500 dark:text-white dark:hover:bg-sky-600 dark:focus:ring-sky-300"
+              class="cursor-pointer rounded-lg bg-sky-700 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-sky-800 focus:ring-2 focus:ring-sky-400 focus:outline-none dark:bg-sky-500 dark:text-white dark:hover:bg-sky-600 dark:focus:ring-sky-300"
               aria-label="Sign In"
             >
               Sign In
