@@ -3,6 +3,7 @@ import { component$ } from "@builder.io/qwik";
 export const ToggleTheme = component$(() => {
   return (
     <button
+      id="theme-toggle"
       onClick$={() => {
         const currentTheme = document.documentElement.classList.contains("dark")
           ? "dark"
