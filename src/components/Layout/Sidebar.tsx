@@ -41,6 +41,7 @@ export const Sidebar = component$(() => {
       <button
         onClick$={toggleOpen}
         aria-label="Open Sidebar"
+        name="open-sidebar"
         class="cursor-pointer"
       >
         <svg
@@ -79,6 +80,7 @@ export const Sidebar = component$(() => {
         {/* Close Button */}
         <button
           onClick$={toggleOpen}
+          name="close-sidebar"
           aria-label="Close Sidebar"
           class="flex w-full cursor-pointer items-center justify-end"
         >

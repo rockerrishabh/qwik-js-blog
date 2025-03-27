@@ -5,7 +5,7 @@ export default component$(() => {
   return (
     <>
       <h1>Hi 👋</h1>
-      <div class="text-green-500 dark:text-pink-500">
+      <div class="">
         Can't wait to see what you build with qwik!
         <br />
         Happy coding.

@@ -8,13 +8,13 @@ export const Header = component$(() => {
   return (
     <header class="bg-white p-4 shadow-md dark:bg-slate-900" role="banner">
       <div class="mx-auto flex max-w-7xl items-center justify-between gap-4">
-        <a
+        <Link
           href="/"
           class="rounded text-xl font-bold hover:scale-105"
           aria-label="Home"
         >
           Blog <span class="text-sky-700 dark:text-sky-300">App</span>
-        </a>
+        </Link>
 
         <nav
           class="hidden items-center gap-8 md:flex"
