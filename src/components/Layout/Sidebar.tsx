@@ -47,7 +47,7 @@ export const Sidebar = component$(() => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          class="size-6"
+          class="size-6 p-2"
         >
           <path
             fill-rule="evenodd"
@@ -80,7 +80,7 @@ export const Sidebar = component$(() => {
         <button
           onClick$={toggleOpen}
           aria-label="Close the sidebar menu"
-          class="flex w-full cursor-pointer items-center justify-end"
+          class="flex w-full cursor-pointer items-center justify-end p-2"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
