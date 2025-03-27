@@ -30,26 +30,37 @@ export default component$(() => {
         <RouterHead />
         <script
           dangerouslySetInnerHTML={`
-        (function() {
-          function setTheme(theme) {
-            document.documentElement.className = theme;
-            localStorage.setItem('theme', theme);
-          }
-          const theme = localStorage.getItem('theme');
- 
-          if (theme) {
-            setTheme(theme);
-          } else {
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-              setTheme('dark');}
-              else {
-                setTheme('light');}}
-        })();
-        window.addEventListener('load', function() {
-          const themeSwitch = document.getElementById('hide-checkbox');
-          themeSwitch.checked = localStorage.getItem('theme') === 'light'? true: false;
-        }
-        );
+       (function() {
+    function setTheme(theme) {
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(theme);
+      localStorage.setItem("theme", theme);
+    }
+
+    // Check stored theme or system preference
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = savedTheme || (prefersDark ? "dark" : "light");
+
+    setTheme(theme);
+
+    // Ensure toggle button reflects the current theme
+    window.addEventListener("load", function() {
+      const themeSwitch = document.getElementById("hide-checkbox");
+      if (themeSwitch) {
+        themeSwitch.checked = theme === "light";
+      }
+    });
+
+    // Listen for theme changes from the toggle button
+    window.addEventListener("click", function(event) {
+      const toggleButton = event.target.closest("button");
+      if (toggleButton && toggleButton.getAttribute("id") === "theme-toggle") {
+        const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+        setTheme(currentTheme === "light" ? "dark" : "light");
+      }
+    });
+  })();
       `}
         ></script>
       </head>
