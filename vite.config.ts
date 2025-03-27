@@ -50,6 +50,8 @@ export default defineConfig((): UserConfig => {
         "Cache-Control": "public, max-age=0",
       },
       port: 3000,
+      host: "0.0.0.0",
+
     },
     preview: {
       headers: {
@@ -57,6 +59,7 @@ export default defineConfig((): UserConfig => {
         "Cache-Control": "public, max-age=600",
       },
       port: 3000,
+      host: "0.0.0.0",
     },
   };
 });

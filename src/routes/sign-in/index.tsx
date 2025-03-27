@@ -9,28 +9,28 @@ import {
 
 import { z } from "zod";
 
-const LoginSchema = z.object({
+const SignInSchema = z.object({
   email: z.string(),
   password: z.string(),
 });
 
-type LoginForm = z.infer<typeof LoginSchema>;
+type SignInForm = z.infer<typeof SignInSchema>;
 
-export const useFormLoader = routeLoader$<InitialValues<LoginForm>>(() => ({
+export const useFormLoader = routeLoader$<InitialValues<SignInForm>>(() => ({
   email: "",
   password: "",
 }));
 
-export const useFormAction = formAction$<LoginForm>((values) => {
+export const useFormAction = formAction$<SignInForm>((values) => {
   // Runs on server
   console.log(values);
-}, zodForm$(LoginSchema));
+}, zodForm$(SignInSchema));
 
 export default component$(() => {
-  const [loginForm, { Form, Field }] = useForm<LoginForm>({
+  const [signInForm, { Form, Field }] = useForm<SignInForm>({
     loader: useFormLoader(),
     action: useFormAction(),
-    validate: zodForm$(LoginSchema),
+    validate: zodForm$(SignInSchema),
   });
 
   return (
@@ -50,7 +50,6 @@ export default component$(() => {
                 <input
                   {...props}
                   type="email"
-                  value={field.value}
                   placeholder="you@example.com"
                   required
                   class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
@@ -76,7 +75,6 @@ export default component$(() => {
                 <input
                   {...props}
                   type="password"
-                  value={field.value}
                   placeholder="Your password"
                   required
                   class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
@@ -102,7 +100,7 @@ export default component$(() => {
 
         <div class="pt-2">
           <button
-            disabled={loginForm.submitting}
+            disabled={signInForm.submitting}
             type="submit"
             class="w-full cursor-pointer rounded-lg bg-sky-800 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-sky-900 focus:ring-2 focus:ring-sky-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-slate-700 dark:bg-sky-600 dark:hover:bg-sky-700"
             aria-label="Sign In"

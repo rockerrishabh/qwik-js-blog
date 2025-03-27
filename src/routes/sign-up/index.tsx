@@ -1,11 +1,53 @@
 import { component$ } from "@builder.io/qwik";
-import { Link, type DocumentHead } from "@builder.io/qwik-city";
+import {
+  Link,
+  routeLoader$,
+  z,
+  type DocumentHead,
+} from "@builder.io/qwik-city";
+import {
+  formAction$,
+  type InitialValues,
+  useForm,
+  zodForm$,
+} from "@modular-forms/qwik";
+
+const SignUpSchema = z
+  .object({
+    name: z.string(),
+    email: z.string(),
+    password: z.string(),
+    confirmPassword: z.string(),
+  })
+  .refine((field) => field.password === field.confirmPassword, {
+    message: "Passwords do not match",
+  });
+
+type SignUpForm = z.infer<typeof SignUpSchema>;
+
+export const useFormLoader = routeLoader$<InitialValues<SignUpForm>>(() => ({
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+}));
+
+export const useFormAction = formAction$<SignUpForm>((values) => {
+  // Runs on server
+  console.log(values);
+}, zodForm$(SignUpSchema));
 
 export default component$(() => {
+  const [signUpForm, { Form, Field }] = useForm<SignUpForm>({
+    loader: useFormLoader(),
+    action: useFormAction(),
+    validate: zodForm$(SignUpSchema),
+  });
+
   return (
     <main class="mx-auto max-w-md p-8 md:max-w-lg lg:max-w-xl" role="main">
       <h1 class="mb-6 text-2xl font-bold">Create Your Account</h1>
-      <form class="space-y-4" aria-label="Sign up form">
+      <Form class="space-y-4" aria-label="Sign up form">
         <div>
           <label
             for="name"
@@ -13,16 +55,22 @@ export default component$(() => {
           >
             Name
           </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Your Name"
-            required
-            class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-          />
-
-          <pre class="mt-1 text-xs text-red-600"></pre>
+          <Field name="name">
+            {(field, props) => (
+              <div>
+                <input
+                  {...props}
+                  type="text"
+                  placeholder="Your Name"
+                  required
+                  class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+                />
+                {field.error && (
+                  <pre class="mt-1 text-xs text-red-600">{field.error}</pre>
+                )}
+              </div>
+            )}
+          </Field>
         </div>
 
         <div>
@@ -32,16 +80,22 @@ export default component$(() => {
           >
             Email
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="you@example.com"
-            required
-            class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-          />
-
-          <pre class="mt-1 text-xs text-red-600"></pre>
+          <Field name="email">
+            {(field, props) => (
+              <div>
+                <input
+                  {...props}
+                  type="email"
+                  placeholder="Your Email Address"
+                  required
+                  class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+                />
+                {field.error && (
+                  <pre class="mt-1 text-xs text-red-600">{field.error}</pre>
+                )}
+              </div>
+            )}
+          </Field>
         </div>
 
         <div>
@@ -51,16 +105,22 @@ export default component$(() => {
           >
             Password
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Your password"
-            required
-            class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-          />
-
-          <pre class="mt-1 text-xs text-red-600"></pre>
+          <Field name="password">
+            {(field, props) => (
+              <div>
+                <input
+                  {...props}
+                  type="password"
+                  placeholder="Your New Password"
+                  required
+                  class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+                />
+                {field.error && (
+                  <pre class="mt-1 text-xs text-red-600">{field.error}</pre>
+                )}
+              </div>
+            )}
+          </Field>
         </div>
 
         <div>
@@ -70,16 +130,22 @@ export default component$(() => {
           >
             Confirm Password
           </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            placeholder="Confirm password"
-            required
-            class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-          />
-
-          <pre class="mt-1 text-xs text-red-600"></pre>
+          <Field name="confirmPassword">
+            {(field, props) => (
+              <div>
+                <input
+                  {...props}
+                  type="password"
+                  placeholder="Confirm Your Password"
+                  required
+                  class="mt-1 block w-full rounded-md border border-slate-300 bg-white p-2 text-slate-900 shadow-sm focus:ring-2 focus:ring-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+                />
+                {field.error && (
+                  <pre class="mt-1 text-xs text-red-600">{field.error}</pre>
+                )}
+              </div>
+            )}
+          </Field>
         </div>
         <div class="flex items-center">
           <input
@@ -115,8 +181,9 @@ export default component$(() => {
 
         <div class="pt-2">
           <button
+            disabled={signUpForm.submitting}
             type="submit"
-            class="w-full cursor-pointer rounded-lg bg-sky-800 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-sky-900 focus:ring-2 focus:ring-sky-500 focus:outline-none dark:bg-sky-600 dark:hover:bg-sky-700"
+            class="w-full cursor-pointer rounded-lg bg-sky-800 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-sky-900 focus:ring-2 focus:ring-sky-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-slate-700 dark:bg-sky-600 dark:hover:bg-sky-700"
             aria-label="Sign Up"
           >
             Sign Up
@@ -133,7 +200,7 @@ export default component$(() => {
             Sign In
           </Link>
         </p>
-      </form>
+      </Form>
     </main>
   );
 });
