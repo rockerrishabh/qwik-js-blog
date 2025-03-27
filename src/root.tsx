@@ -30,37 +30,26 @@ export default component$(() => {
         <RouterHead />
         <script
           dangerouslySetInnerHTML={`
-       (function () {
-    function setTheme(theme) {
-      document.documentElement.classList.remove("light", "dark");
-      document.documentElement.classList.add(theme);
-      localStorage.setItem("theme", theme);
-    }
-
-    // Load theme from localStorage or system preference
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = savedTheme || (prefersDark ? "dark" : "light");
-    setTheme(theme);
-
-    // Ensure toggle button reflects the current theme
-    window.addEventListener("DOMContentLoaded", function () {
-      const themeSwitch = document.getElementById("hide-checkbox");
-      if (themeSwitch) {
-        themeSwitch.checked = theme === "light";
-      }
-
-      // Attach event listener to the toggle button
-      const toggleButton = document.getElementById("theme-toggle");
-      if (toggleButton) {
-        toggleButton.addEventListener("click", function () {
-          const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
-          const newTheme = currentTheme === "light" ? "dark" : "light";
-          setTheme(newTheme);
-        });
-      }
-    });
-  })();
+        (function() {
+          function setTheme(theme) {
+            document.documentElement.className = theme;
+            localStorage.setItem('theme', theme);
+          }
+          const theme = localStorage.getItem('theme');
+ 
+          if (theme) {
+            setTheme(theme);
+          } else {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              setTheme('dark');}
+              else {
+                setTheme('light');}}
+        })();
+        window.addEventListener('load', function() {
+          const themeSwitch = document.getElementById('theme-toggle');
+          themeSwitch.checked = localStorage.getItem('theme') === 'light'? true: false;
+        }
+        );
       `}
         ></script>
       </head>
