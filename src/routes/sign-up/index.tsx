@@ -25,6 +25,7 @@ const SignUpSchema = z
   })
   .refine((field) => field.password === field.confirmPassword, {
     message: "Passwords do not match",
+    path: ["confirmPassword"],
   });
 
 type SignUpForm = z.infer<typeof SignUpSchema>;
